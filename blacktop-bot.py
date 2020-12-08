@@ -1,5 +1,6 @@
 from pyautogui import *
 from datetime import datetime
+import pygetwindow as gw
 import pyautogui
 import time
 import keyboard
@@ -12,7 +13,8 @@ def get_time_stamp():
     return dateTimeObj.strftime("(%H:%M:%S)")
 
 def start_game_are_u_sure():
-    print(get_time_stamp(), "Starting the game. \nBotting started.")
+    print(get_time_stamp(), "Starting the game.")
+    print(get_time_stamp(), "Botting started.")
     keyboard.press("s")
     time.sleep(0.2)
     keyboard.release("s")
@@ -41,9 +43,17 @@ def skip_to_sub_in():
     time.sleep(5)
     keyboard.release("space")
 
-print(get_time_stamp(), "Welcome to 2k21 VC MyCareer Bot, to quit it press Q on the keyboard.");
+print(get_time_stamp(), "Welcome to 2K21 VC MyCareer Bot, to quit it press Q on the keyboard.");
 
 while keyboard.is_pressed('q') == False:
+    win = gw.getWindowsWithTitle('NBA 2K21')
+
+    if len(win) > 0:
+        win[0].activate();
+    else:
+        print(get_time_stamp(), "NBA 2K21 is not running. Exiting.");
+        break;    
+
     if pyautogui.locateOnScreen('assets/playgame.png', grayscale=True, confidence=0.8) is not None:
         start_game_are_u_sure()
     elif pyautogui.locateOnScreen('assets/allstar.png', grayscale=True, confidence=0.8) is not None:
