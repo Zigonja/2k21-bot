@@ -30,7 +30,7 @@ def go_to_next_game():
 def skip_all_star():
     print(get_time_stamp(), "Skipping all star games.")
 
-    while pyautogui.locateOnScreen('allstar.png', grayscale=True, confidence=0.8) is not None:
+    while pyautogui.locateOnScreen('assets/allstar.png', grayscale=True, confidence=0.8) is not None:
         keyboard.press("d")
         time.sleep(0.2)
         keyboard.release("d")
@@ -44,13 +44,13 @@ def skip_to_sub_in():
 print(get_time_stamp(), "Welcome to 2k21 VC MyCareer Bot, to quit it press Q on the keyboard.");
 
 while keyboard.is_pressed('q') == False:
-    if pyautogui.locateOnScreen('playgame.png', grayscale=True, confidence=0.8) is not None:
+    if pyautogui.locateOnScreen('assets/playgame.png', grayscale=True, confidence=0.8) is not None:
         start_game_are_u_sure()
-    elif pyautogui.locateOnScreen('allstar.png', grayscale=True, confidence=0.8) is not None:
+    elif pyautogui.locateOnScreen('assets/allstar.png', grayscale=True, confidence=0.8) is not None:
         skip_all_star()
-    elif pyautogui.locateOnScreen('teampractice.png', grayscale=True, confidence=0.8) is not None:
+    elif pyautogui.locateOnScreen('assets/teampractice.png', grayscale=True, confidence=0.8) is not None:
         go_to_next_game()
-    elif pyautogui.locateOnScreen('onthecourt.png', grayscale=True, confidence=0.8) is not None:
+    elif pyautogui.locateOnScreen('assets/onthecourt.png', grayscale=True, confidence=0.8) is not None:
         skip_to_sub_in()
     else:
         keyboard.press("space")
