@@ -23,6 +23,16 @@ def start_game_are_u_sure():
     time.sleep(0.2)
     keyboard.release("space")
 
+def ens_season_are_u_sure():
+    print(get_time_stamp(), "Ending the season.")
+    keyboard.press("s")
+    time.sleep(0.2)
+    keyboard.release("s")
+
+    keyboard.press("space")
+    time.sleep(0.2)
+    keyboard.release("space")
+
 def go_to_next_game():
     print(get_time_stamp(), "Navigating to next game.")
     keyboard.press("d")
@@ -56,6 +66,8 @@ while keyboard.is_pressed('q') == False:
 
     if pyautogui.locateOnScreen('assets/playgame.png', grayscale=True, confidence=0.8) is not None:
         start_game_are_u_sure()
+    elif pyautogui.locateOnScreen('assets/endseason.png', grayscale=True, confidence=0.8) is not None:
+        ens_season_are_u_sure()    
     elif pyautogui.locateOnScreen('assets/allstar.png', grayscale=True, confidence=0.8) is not None:
         skip_all_star()
     elif pyautogui.locateOnScreen('assets/teampractice.png', grayscale=True, confidence=0.8) is not None:
