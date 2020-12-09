@@ -12,9 +12,9 @@ def get_time_stamp():
     
     return dateTimeObj.strftime("(%H:%M:%S)")
 
-def start_game_are_u_sure():
+def start_game_are_u_sure(game_count):
     print(get_time_stamp(), "Starting the game.")
-    print(get_time_stamp(), "Botting started.")
+    print(get_time_stamp(), "Botting started. Game number", game_count)
     keyboard.press("s")
     time.sleep(0.2)
     keyboard.release("s")
@@ -54,6 +54,7 @@ def skip_to_sub_in():
     keyboard.release("space")
 
 print(get_time_stamp(), "Welcome to 2K21 VC MyCareer Bot, to quit it press Q on the keyboard.");
+game_count = 0
 
 while keyboard.is_pressed('q') == False:
     win = gw.getWindowsWithTitle('NBA 2K21')
@@ -64,8 +65,13 @@ while keyboard.is_pressed('q') == False:
         print(get_time_stamp(), "NBA 2K21 is not running. Exiting.");
         break;    
 
+    if keyboard.is_pressed('p') == True:
+        print(get_time_stamp(), "Sleeping for 10 seconds.")
+        time.sleep(10)
+
     if pyautogui.locateOnScreen('assets/playgame.png', grayscale=True, confidence=0.8) is not None:
-        start_game_are_u_sure()
+        start_game_are_u_sure(game_count + 1)
+        game_count += 1
     elif pyautogui.locateOnScreen('assets/endseason.png', grayscale=True, confidence=0.8) is not None:
         ens_season_are_u_sure()    
     elif pyautogui.locateOnScreen('assets/allstar.png', grayscale=True, confidence=0.8) is not None:
@@ -78,3 +84,5 @@ while keyboard.is_pressed('q') == False:
         keyboard.press("space")
         time.sleep(0.2)
         keyboard.release("space")
+
+print(get_time_stamp(), "The bot completed", game_count, " games. Goodybe!  ");
