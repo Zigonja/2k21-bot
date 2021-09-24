@@ -53,22 +53,31 @@ def skip_to_sub_in():
     time.sleep(5)
     keyboard.release("space")
 
-print(get_time_stamp(), "Welcome to 2K21 VC MyCareer Bot, to quit it press Q on the keyboard.");
+print(get_time_stamp(), "Welcome to 2K22 VC MyCareer Bot, to quit it press Q on the keyboard.")
 game_count = 0
 
 while keyboard.is_pressed('q') == False:
-    win = gw.getWindowsWithTitle('NBA 2K21')
+    win = gw.getWindowsWithTitle('NBA 2K22')
 
     if len(win) > 0:
-        win[0].activate();
+        win[0].activate()
     else:
-        print(get_time_stamp(), "NBA 2K21 is not running. Exiting.");
+        print(get_time_stamp(), "NBA 2K22 is not running. Exiting.")
         break;    
 
     if keyboard.is_pressed('p') == True:
         print(get_time_stamp(), "Sleeping for 10 seconds.")
         time.sleep(10)
 
+    next_game_pos = pyautogui.locateOnScreen('assets/playnextgame.png', grayscale=True, confidence=0.8)
+    next_game_selected = pyautogui.locateOnScreen('assets/nextgameselected.png', grayscale=True, confidence=0.9)
+
+    if next_game_pos is not None and next_game_selected is None:
+        next_game_x, next_game_y = pyautogui.center(next_game_pos)
+        pyautogui.moveTo(x=next_game_x, y=next_game_y)
+        pyautogui.mouseDown()
+        time.sleep(0.2)
+        pyautogui.mouseUp()
     if pyautogui.locateOnScreen('assets/playgame.png', grayscale=True, confidence=0.8) is not None:
         start_game_are_u_sure(game_count + 1)
         game_count += 1
@@ -79,10 +88,14 @@ while keyboard.is_pressed('q') == False:
     elif pyautogui.locateOnScreen('assets/teampractice.png', grayscale=True, confidence=0.8) is not None:
         go_to_next_game()
     elif pyautogui.locateOnScreen('assets/onthecourt.png', grayscale=True, confidence=0.8) is not None:
-        skip_to_sub_in()
+        skip_to_sub_in()    
+    elif pyautogui.locateOnScreen('assets/seasons.png', grayscale=True, confidence=0.8) is not None:
+        keyboard.press("esc")
+        time.sleep(0.2)
+        keyboard.release("esc")
     else:
         keyboard.press("space")
-        time.sleep(0.2)
+        time.sleep(2)
         keyboard.release("space")
 
 print(get_time_stamp(), "The bot completed", game_count, " games. Goodybe!  ");
